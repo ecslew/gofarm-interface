@@ -5,38 +5,28 @@ import PageHeader from '../../components/PageHeader';
 import Spacer from '../../components/Spacer';
 import HomeCard from './components/HomeCard';
 import { OverviewData } from './types';
-import useBasisCash from '../../hooks/useBasisCash';
-import config from '../../config';
-import background_1 from '../../assets/img/background_1.jpg';
+import useGoFarm from '../../hooks/useGoFarm';
+import background_1 from '../../assets/img/background_1.png';
 // import Notice from '../../components/Notice';
 
 const Home: React.FC = () => {
-  const basisCash = useBasisCash();
+  const goFarm = useGoFarm();
 
-  const [{ cash, bond, share }, setStats] = useState<OverviewData>({});
+  const [{ GOT}, setStats] = useState<OverviewData>({});
   const fetchStats = useCallback(async () => {
-    const [cash, bond, share] = await Promise.all([
-      basisCash.getCashStatFromUniswap(),
-      basisCash.getBondStat(),
-      basisCash.getShareStat(),
+    const [GOT] = await Promise.all([
+      goFarm.getGOTStatFromUniswap()
     ]);
-    if (Date.now() < config.bondLaunchesAt.getTime()) {
-      bond.priceInDAI = '-';
-    }else{
-      bond.priceInDAI = (Math.floor(Number(bond.priceInDAI) * 100) / 100).toString()
-    }
-    setStats({ cash, bond, share });
-  }, [basisCash, setStats]);
+    setStats({ GOT });
+  }, [goFarm, setStats]);
 
   useEffect(() => {
-    if (basisCash) {
+    if (goFarm) {
       fetchStats().catch((err) => console.error(err.stack));
     }
-  }, [basisCash,fetchStats]);
+  }, [goFarm,fetchStats]);
 
-  const cashAddr = useMemo(() => basisCash?.GOC.address, [basisCash]);
-  const shareAddr = useMemo(() => basisCash?.GOS.address, [basisCash]);
-  const bondAddr = useMemo(() => basisCash?.GOB.address, [basisCash]);
+  const GOTAddr = useMemo(() => goFarm?.GOC.address, [goFarm]);
 
   return (
     <Background>
@@ -53,24 +43,8 @@ const Home: React.FC = () => {
           symbol="GOC"
           color="#EEA7ED"
           supplyLabel="循环供应"
-          address={cashAddr}
-          stat={cash}
-        />
-        <Spacer size="lg" />
-        <HomeCard
-          title="GoCash股份"
-          symbol="GOS"
-          color="#E83725"
-          address={shareAddr}
-          stat={share}
-        />
-        <Spacer size="lg" />
-        <HomeCard
-          title="GoCash债券"
-          symbol="GOB"
-          color="#ECF25C"
-          address={bondAddr}
-          stat={bond}
+          address={GOTAddr}
+          stat={GOT}
         />
       </CardWrapper>
     </Page>

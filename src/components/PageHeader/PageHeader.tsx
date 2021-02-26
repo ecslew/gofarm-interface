@@ -42,14 +42,16 @@ const StyledTitle = styled.h1`
   font-weight: 700;
   margin: 0;
   padding: 0;
+  text-shadow: 3px 3px 3px #000000;
 `
 
 const StyledSubtitle = styled.h3`
-  color: ${props => props.theme.color.grey[400]};
+  color: ${props => props.theme.color.grey[100]};
   font-size: 18px;
   font-weight: 400;
   margin: 0;
   padding: 0;
+  text-shadow: 3px 3px 3px #000000;
   text-align: center;
   @media (max-width: 835px) {
     font-size: 25px;

@@ -1,18 +1,18 @@
 import { useCallback } from 'react';
-import useBasisCash from './useBasisCash';
+import useGoFarm from './useGoFarm';
 import useHandleTransactionReceipt from './useHandleTransactionReceipt';
-import { Bank } from '../basis-cash';
+import { Farm } from '../go-farm';
 
-const useHarvest = (bank: Bank) => {
-  const basisCash = useBasisCash();
+const useHarvest = (farm: Farm) => {
+  const goFarm = useGoFarm();
   const handleTransactionReceipt = useHandleTransactionReceipt();
 
   const handleReward = useCallback(() => {
     handleTransactionReceipt(
-      basisCash.harvest(bank.contract),
-      `从 ${bank.contract} 收获 ${bank.earnTokenName}`,
+      goFarm.harvest(farm.contract),
+      `从 ${farm.contract} 收获 ${farm.earnTokenName}`,
     );
-  }, [bank, basisCash,handleTransactionReceipt]);
+  }, [farm, goFarm,handleTransactionReceipt]);
 
   return { onReward: handleReward };
 };

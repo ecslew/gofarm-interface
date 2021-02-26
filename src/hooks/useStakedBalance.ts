@@ -1,27 +1,26 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { BigNumber } from 'ethers';
-import useBasisCash from './useBasisCash';
-import { ContractName } from '../basis-cash';
+import useGoFarm from './useGoFarm';
 import config from '../config';
 
-const useStakedBalance = (poolName: ContractName) => {
+const useStakedBalance = (pid: number) => {
   const [balance, setBalance] = useState(BigNumber.from(0));
-  const basisCash = useBasisCash();
+  const goFarm = useGoFarm();
 
   const fetchBalance = useCallback(async () => {
-    const balance = await basisCash.stakedBalanceOnBank(poolName, basisCash.myAccount);
-    setBalance(balance);
-  }, [ poolName,basisCash]);
+    const userInfo = await goFarm.stakedBalanceOnFarm(pid, goFarm.myAccount);
+    setBalance(BigNumber.from(userInfo.amount));
+  }, [ pid,goFarm]);
 
   useEffect(() => {
-    if (basisCash?.isUnlocked) {
+    if (goFarm?.isUnlocked) {
       fetchBalance().catch(err => console.error(err.stack));
 
       const refreshBalance = setInterval(fetchBalance, config.refreshInterval);
       return () => clearInterval(refreshBalance);
     }
-  }, [poolName, setBalance, basisCash,fetchBalance]);
+  }, [pid, setBalance, goFarm,fetchBalance]);
 
   return balance;
 };

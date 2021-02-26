@@ -1,22 +1,22 @@
 import { useCallback } from 'react';
-import useBasisCash from './useBasisCash';
-import { Bank } from '../basis-cash';
+import useGoFarm from './useGoFarm';
+import { Farm } from '../go-farm';
 import useHandleTransactionReceipt from './useHandleTransactionReceipt';
 import { parseUnits } from 'ethers/lib/utils';
 
-const useStake = (bank: Bank) => {
-  const basisCash = useBasisCash();
+const useStake = (farm: Farm) => {
+  const goFarm = useGoFarm();
   const handleTransactionReceipt = useHandleTransactionReceipt();
 
   const handleStake = useCallback(
     (amount: string) => {
-      const amountBn = parseUnits(amount, bank.depositToken.decimal);
+      const amountBn = parseUnits(amount, farm.depositToken.decimal);
       handleTransactionReceipt(
-        basisCash.stake(bank.contract, amountBn),
-        `质押 ${amount} ${bank.depositTokenName} 到 ${bank.contract}`,
+        goFarm.stake(farm.contract, amountBn),
+        `质押 ${amount} ${farm.depositTokenName} 到 ${farm.contract}`,
       );
     },
-    [bank, basisCash,handleTransactionReceipt],
+    [farm, goFarm,handleTransactionReceipt],
   );
   return { onStake: handleStake };
 };

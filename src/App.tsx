@@ -4,19 +4,17 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { UseWalletProvider } from 'use-wallet';
 
-import BanksProvider from './contexts/Banks';
-import BasisCashProvider from './contexts/BasisCashProvider';
+import FarmsProvider from './contexts/Farms';
+import GoFarmProvider from './contexts/GoFarmProvider';
 import ModalsProvider from './contexts/Modals';
 
-import Banks from './views/Banks';
+import Farms from './views/Farms';
 import Home from './views/Home';
-import Bond from './views/Bond';
 
 import store from './state';
 import theme from './theme';
 import config from './config';
 import Updaters from './state/Updaters';
-import Boardroom from './views/Boardroom';
 import Popups from './components/Popups';
 
 const App: React.FC = () => {
@@ -27,14 +25,8 @@ const App: React.FC = () => {
           <Route path="/" exact>
             <Home />
           </Route>
-          <Route path="/bank">
-            <Banks />
-          </Route>
-          <Route path="/bonds">
-            <Bond />
-          </Route>
-          <Route path="/boardroom">
-            <Boardroom />
+          <Route path="/farm">
+            <Farms />
           </Route>
         </Switch>
       </Router>
@@ -48,16 +40,16 @@ const Providers: React.FC = ({ children }) => {
       <UseWalletProvider chainId={config.chainId}>
         <Provider store={store}>
           <Updaters />
-          <BasisCashProvider>
+          <GoFarmProvider>
             <ModalsProvider>
-              <BanksProvider>
+              <FarmsProvider>
                 <>
                   <Popups />
                   {children}
                 </>
-              </BanksProvider>
+              </FarmsProvider>
             </ModalsProvider>
-          </BasisCashProvider>
+          </GoFarmProvider>
         </Provider>
       </UseWalletProvider>
     </ThemeProvider>

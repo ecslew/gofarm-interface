@@ -7,11 +7,11 @@ import { getDisplayBalance } from '../../../utils/formatBalance';
 import Label from '../../Label';
 import Modal, { ModalProps } from '../../Modal';
 import ModalTitle from '../../ModalTitle';
-import useBasisCash from '../../../hooks/useBasisCash';
+import useGoFarm from '../../../hooks/useGoFarm';
 import TokenSymbol from '../../TokenSymbol';
 
 const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
-  const basisCash = useBasisCash();
+  const basisCash = useGoFarm();
 
   const bacBalance = useTokenBalance(basisCash.GOC);
   const displayBacBalance = useMemo(() => getDisplayBalance(bacBalance), [bacBalance]);

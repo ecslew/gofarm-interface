@@ -1,7 +1,5 @@
-import { TokenStat } from '../../basis-cash/types';
+import { TokenStat } from '../../go-farm/types';
 
 export interface OverviewData {
-  cash?: TokenStat;
-  bond?: TokenStat;
-  share?: TokenStat;
+  GOT?: TokenStat;
 }

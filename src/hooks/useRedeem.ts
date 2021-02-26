@@ -1,15 +1,15 @@
 import { useCallback } from 'react';
-import useBasisCash from './useBasisCash';
-import { Bank } from '../basis-cash';
+import useGoFarm from './useGoFarm';
+import { Farm } from '../go-farm';
 import useHandleTransactionReceipt from './useHandleTransactionReceipt';
 
-const useRedeem = (bank: Bank) => {
-  const basisCash = useBasisCash();
+const useRedeem = (farm: Farm) => {
+  const goFarm = useGoFarm();
   const handleTransactionReceipt = useHandleTransactionReceipt();
 
   const handleRedeem = useCallback(() => {
-    handleTransactionReceipt(basisCash.exit(bank.contract), `赎回 ${bank.contract}`);
-  }, [bank, basisCash,handleTransactionReceipt]);
+    handleTransactionReceipt(goFarm.exit(farm.contract), `赎回 ${farm.contract}`);
+  }, [farm, goFarm,handleTransactionReceipt]);
 
   return { onRedeem: handleRedeem };
 };

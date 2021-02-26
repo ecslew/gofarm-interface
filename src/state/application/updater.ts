@@ -48,7 +48,8 @@ export default function Updater(): null {
       );
 
     provider.on('block', blockNumberCallback)
-    return () => provider.removeListener('block', blockNumberCallback);
+    // return () => provider.removeListener('block', blockNumberCallback);
+    provider.removeListener('block', blockNumberCallback);
   }, [dispatch, chainId, ethereum, blockNumberCallback, windowVisible]);
 
   const debouncedState = useDebounce(state, 100);
