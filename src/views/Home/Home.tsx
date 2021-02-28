@@ -26,7 +26,7 @@ const Home: React.FC = () => {
     }
   }, [goFarm,fetchStats]);
 
-  const GOTAddr = useMemo(() => goFarm?.GOC.address, [goFarm]);
+  const GOTAddr = useMemo(() => goFarm?.externalTokens['GOT'].address, [goFarm]);
 
   return (
     <Background>
@@ -40,7 +40,7 @@ const Home: React.FC = () => {
       <CardWrapper>
         <HomeCard
           title="GoCash现金"
-          symbol="GOC"
+          symbol="GOT"
           color="#EEA7ED"
           supplyLabel="循环供应"
           address={GOTAddr}

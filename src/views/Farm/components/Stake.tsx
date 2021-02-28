@@ -67,9 +67,14 @@ const Stake: React.FC<StakeProps> = ({ farm }) => {
       <CardContent>
         <StyledCardContentInner>
           <StyledCardHeader>
+            <LogoCard>
             <CardIcon>
-              <TokenSymbol symbol={farm.depositToken.symbol} size={54} />
+              <TokenSymbol symbol={farm.TokenA} size={54} />
             </CardIcon>
+            <CardIcon>
+              <TokenSymbol symbol={farm.TokenB} size={54} />
+            </CardIcon>
+            </LogoCard>
             <Value value={getDisplayBalance(stakedBalance, farm.depositToken.decimal)} />
             <Label text={`质押的${farm.depositTokenName}`} />
           </StyledCardHeader>
@@ -104,6 +109,10 @@ const Stake: React.FC<StakeProps> = ({ farm }) => {
   );
 };
 
+
+const LogoCard = styled.div`
+  display: flex;
+`;
 const StyledCardHeader = styled.div`
   align-items: center;
   display: flex;

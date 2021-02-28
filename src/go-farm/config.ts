@@ -6,14 +6,9 @@ export type Configuration = {
   etherscanUrl: string,
   defaultProvider: string,
   deployments: Deployments,
-  MasterChef: string,
   externalTokens: {[contractName: string]: [string, number]};
+  MasterChef: string,
   config?: EthereumConfig,
-
-  baseLaunchDate: Date,
-  bondLaunchesAt: Date,
-  boardroomLaunchesAt: Date,
-
   refreshInterval: number;
   gasLimitMultiplier: number;
 };

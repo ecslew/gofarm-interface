@@ -9,8 +9,8 @@ const useHarvest = (farm: Farm) => {
 
   const handleReward = useCallback(() => {
     handleTransactionReceipt(
-      goFarm.harvest(farm.contract),
-      `从 ${farm.contract} 收获 ${farm.earnTokenName}`,
+      goFarm.harvest(farm.depositTokenName),
+      `从 ${farm.depositTokenName} 收获 ${farm.earnTokenName}`,
     );
   }, [farm, goFarm,handleTransactionReceipt]);
 

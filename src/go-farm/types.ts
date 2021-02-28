@@ -4,9 +4,10 @@ export type ContractName = string;
 
 export interface FarmInfo {
   name: string;
-  contract: ContractName;
   depositTokenName: ContractName;
   earnTokenName: ContractName;
+  TokenA: ContractName;
+  TokenB: ContractName;
   pairName: string;
   pairUrl: string;
   sort: number;
@@ -14,7 +15,7 @@ export interface FarmInfo {
   pid: number;
 }
 
-export interface Farm extends  FarmInfo {
+export interface Farm extends FarmInfo {
   address: string;
   depositToken: ERC20;
   earnToken: ERC20;

@@ -12,8 +12,8 @@ const useStake = (farm: Farm) => {
     (amount: string) => {
       const amountBn = parseUnits(amount, farm.depositToken.decimal);
       handleTransactionReceipt(
-        goFarm.stake(farm.contract, amountBn),
-        `质押 ${amount} ${farm.depositTokenName} 到 ${farm.contract}`,
+        goFarm.stake(farm.depositTokenName, amountBn),
+        `质押 ${amount} ${farm.depositTokenName} 到 ${farm.depositTokenName}`,
       );
     },
     [farm, goFarm,handleTransactionReceipt],

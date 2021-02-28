@@ -80,29 +80,36 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
         (farm.depositTokenName.includes('GOC_HUSD') ? (
           <StyledCardSuperAccent />
         ) : (
-          <StyledCardNomal />
-        ))}
+            <StyledCardNomal />
+          ))}
       <Card>
         <CardContent>
           <StyledContent>
-            <CardIcon>
-              <TokenSymbol symbol={farm.depositTokenName} size={54} />
-            </CardIcon>
+            <LogoCard>
+              <CardIcon>
+                <TokenSymbol symbol={farm.TokenA} size={54} />
+              </CardIcon>
+              <CardIcon>
+                <TokenSymbol symbol={farm.TokenB} size={54} />
+              </CardIcon>
+            </LogoCard>
             <StyledTitle>{farm.name}</StyledTitle>
             <StyledDetails>
               <StyledDetail>存入 {farm.depositTokenName.toUpperCase()}</StyledDetail>
               <StyledDetail>赚取 {`${farm.earnTokenName}`}</StyledDetail>
             </StyledDetails>
-            <Button text="加入" to={`/farm/${farm.contract}`} />
-          </StyledContent>
+            <Button text="加入" to={`/farm/${farm.depositTokenName}`} />
+          </StyledContent>s
         </CardContent>
       </Card>
     </StyledCardWrapper>
   );
 };
 
+const LogoCard = styled.div`
+  display: flex;
+`;
 const StyledCardNomal = styled.div`
-
   border-radius: 12px;
   filter: blur(4px);
   position: absolute;

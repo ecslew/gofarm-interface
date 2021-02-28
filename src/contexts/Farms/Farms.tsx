@@ -26,7 +26,7 @@ const Farms: React.FC = ({ children }) => {
         ...farmInfo,
         address: config.MasterChef,
         depositToken:  goFarm.externalTokens[farmInfo.depositTokenName],
-        earnToken:  goFarm.GOT,
+        earnToken:  goFarm.externalTokens[farmInfo.earnTokenName],
       });
     }
     farms.sort((a, b) => (a.sort > b.sort ? 1 : -1));

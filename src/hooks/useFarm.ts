@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import { Context as FarmsContext } from '../contexts/Farms';
-import { Farm, ContractName } from '../go-farm';
+import { Farm ,ContractName} from '../go-farm';
 
-const useFarm = (contractName: ContractName): Farm => {
+const useFarm = (depositTokenName: ContractName): Farm => {
   const { farms } = useContext(FarmsContext);
-  return farms.find((farm) => farm.contract === contractName);
+  return farms.find((farm) => farm.depositTokenName === depositTokenName);
 };
 
 export default useFarm;

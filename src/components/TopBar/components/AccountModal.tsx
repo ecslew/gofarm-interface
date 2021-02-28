@@ -11,16 +11,10 @@ import useGoFarm from '../../../hooks/useGoFarm';
 import TokenSymbol from '../../TokenSymbol';
 
 const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
-  const basisCash = useGoFarm();
+  const goFarm = useGoFarm();
 
-  const bacBalance = useTokenBalance(basisCash.GOC);
+  const bacBalance = useTokenBalance(goFarm.GOT);
   const displayBacBalance = useMemo(() => getDisplayBalance(bacBalance), [bacBalance]);
-
-  const basBalance = useTokenBalance(basisCash.GOS);
-  const displayBasBalance = useMemo(() => getDisplayBalance(basBalance), [basBalance]);
-
-  const babBalance = useTokenBalance(basisCash.GOB);
-  const displayBabBalance = useMemo(() => getDisplayBalance(babBalance), [babBalance]);
 
   return (
     <Modal>
@@ -28,26 +22,10 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
 
       <Balances>
         <StyledBalanceWrapper>
-          <TokenSymbol symbol="GOC" />
+          <TokenSymbol symbol="GOT" />
           <StyledBalance>
             <StyledValue>{displayBacBalance}</StyledValue>
-            <Label text="GOC 余额" />
-          </StyledBalance>
-        </StyledBalanceWrapper>
-
-        <StyledBalanceWrapper>
-          <TokenSymbol symbol="GOS" />
-          <StyledBalance>
-            <StyledValue>{displayBasBalance}</StyledValue>
-            <Label text="GOS 余额" />
-          </StyledBalance>
-        </StyledBalanceWrapper>
-
-        <StyledBalanceWrapper>
-          <TokenSymbol symbol="GOB" />
-          <StyledBalance>
-            <StyledValue>{displayBabBalance}</StyledValue>
-            <Label text="GOB 余额" />
+            <Label text="GOT 余额" />
           </StyledBalance>
         </StyledBalanceWrapper>
       </Balances>

@@ -12,8 +12,8 @@ const useWithdraw = (farm: Farm) => {
     (amount: string) => {
       const amountBn = parseUnits(amount, farm.depositToken.decimal);
       handleTransactionReceipt(
-        goFarm.unstake(farm.contract, amountBn),
-        `从 ${farm.contract} 取出 ${amount} ${farm.depositTokenName} `,
+        goFarm.unstake(farm.depositTokenName, amountBn),
+        `从 ${farm.depositTokenName} 取出 ${amount} ${farm.depositTokenName} `,
       );
     },
     [farm, goFarm,handleTransactionReceipt],
